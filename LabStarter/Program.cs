@@ -15,7 +15,7 @@ namespace LabStarter
         static void Main()
         {
             ActivityTracker.Activity.track();
-            using (var game = new Game1())
+            using (var game = new Chase())
                 game.Run();
         }
     }

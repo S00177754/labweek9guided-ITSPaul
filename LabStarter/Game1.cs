@@ -10,14 +10,16 @@ namespace LabStarter
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Chase : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        string Message = "ppowell Paul Powell";
+        SpriteFont messageFont;
 
         public ActiveScreenState current { get; private set; }
 
-        public Game1()
+        public Chase()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -32,7 +34,7 @@ namespace LabStarter
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            current = ActiveScreenState.PLAY;
             base.Initialize();
         }
         
@@ -48,6 +50,7 @@ namespace LabStarter
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Services.AddService(spriteBatch);
+            messageFont = Content.Load<SpriteFont>("Message");
             
             // Load all the assets and create your objects here
 
@@ -95,7 +98,7 @@ namespace LabStarter
         {
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            
             switch (current)
             {
                 case ActiveScreenState.OPENING:
@@ -107,7 +110,6 @@ namespace LabStarter
                     break;
             }
 
-
             spriteBatch.End();
             // TODO: Add your drawing code here
             base.Draw(gameTime);
@@ -115,7 +117,10 @@ namespace LabStarter
 
         private void draw_play_screen(SpriteBatch spriteBatch)
         {
-
+            
+            spriteBatch.DrawString(messageFont, 
+                Message, new Vector2(20, 20), Color.White);
+            
         }
     }
 }
