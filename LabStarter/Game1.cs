@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System;
+using Engines;
 
 namespace LabStarter
 {
@@ -16,6 +17,7 @@ namespace LabStarter
         SpriteBatch spriteBatch;
         string Message = "ppowell Paul Powell";
         SpriteFont messageFont;
+        ChaseEngine chaseEngine;
 
         public ActiveScreenState current { get; private set; }
 
@@ -35,6 +37,7 @@ namespace LabStarter
         {
             // TODO: Add your initialization logic here
             current = ActiveScreenState.PLAY;
+            chaseEngine = new ChaseEngine(this);
             base.Initialize();
         }
         
@@ -81,6 +84,7 @@ namespace LabStarter
                 case ActiveScreenState.OPENING:
                     break;
                 case ActiveScreenState.PLAY:
+                    chaseEngine.Update(gameTime);
                     break;
                 case ActiveScreenState.ENDING:
                     break;
@@ -117,7 +121,7 @@ namespace LabStarter
 
         private void draw_play_screen(SpriteBatch spriteBatch)
         {
-            
+            chaseEngine.Draw(); 
             spriteBatch.DrawString(messageFont, 
                 Message, new Vector2(20, 20), Color.White);
             

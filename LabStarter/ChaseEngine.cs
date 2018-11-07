@@ -81,7 +81,7 @@ namespace Engines
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Draw(GameTime gameTime)
+        public void Draw()
         {
             p.Draw(spriteBatch);
             eplatformer.Draw(spriteBatch);
